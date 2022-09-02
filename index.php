@@ -5,8 +5,8 @@ require_once "./src/Onesignal.php";
 $Onesignal = new Onesignal();
 
 // set api key and app id
-$api_key = "YThmNTM3NzgtMmNmMC00YWY4LWJjZTctZjI4NTM4Y2NiYTMy";
-$app_id = "5de29809-349c-48fe-8715-dcf16b6234c2";
+$api_key = "<api-key>";
+$app_id = "<add-id>";
 $Onesignal->API_KEY = $api_key;
 $Onesignal->APP_ID = $app_id;
 
