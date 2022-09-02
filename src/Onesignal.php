@@ -49,9 +49,8 @@ class Onesignal{
                 'included_segments' => array(
                     'Subscribed Users'
                 ),
-                'data' => array(
-                    "launch_url" => $data["url"]
-                ),
+                'data' => $data["data"] ? $data["data"] : [],
+                'app_url' => $data['url'],
                 'contents' => $content,
                 'headings' => $heading,
                 "small_icon" => "ic_stat_onesignal_default",
@@ -87,9 +86,8 @@ class Onesignal{
                 'app_id' => $this->APP_ID,
                 // 'included_segments' => array('All'),
                 'include_player_ids' => $users_id,
-                'data' => array(
-                    "launch_url" => $data['url']
-                ),
+                'data' => $data["data"] ? $data["data"] : [],
+                'app_url' => $data['url'],
                 'contents' => $content,
                 'headings' => $heading,
                 "small_icon" => "ic_stat_onesignal_default",
