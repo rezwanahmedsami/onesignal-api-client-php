@@ -49,7 +49,7 @@ class Onesignal{
                 'included_segments' => array(
                     'Subscribed Users'
                 ),
-                'data' => $data["data"] ? $data["data"] : [],
+                // 'data' => $data["data"] ? $data["data"] : [],
                 'app_url' => $data['url'],
                 'contents' => $content,
                 'headings' => $heading,
@@ -60,6 +60,9 @@ class Onesignal{
                 
             );
             
+            if(isset($data["data"])){
+                $fields["data"] = $data["data"];
+            }
             
             $fields = json_encode($fields);
             
@@ -86,7 +89,7 @@ class Onesignal{
                 'app_id' => $this->APP_ID,
                 // 'included_segments' => array('All'),
                 'include_player_ids' => $users_id,
-                'data' => $data["data"] ? $data["data"] : [],
+                // 'data' => $data["data"] ? $data["data"] : [],
                 'app_url' => $data['url'],
                 'contents' => $content,
                 'headings' => $heading,
@@ -95,6 +98,10 @@ class Onesignal{
                 "android_accent_color" => "2464b3",
                 "android_led_color" => "2464b3"
             );
+
+            if(isset($data["data"])){
+                $fields["data"] = $data["data"];
+            }
             
             $fields = json_encode($fields);
             
