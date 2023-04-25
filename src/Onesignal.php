@@ -49,7 +49,6 @@ class Onesignal{
                 'included_segments' => array(
                     'Subscribed Users'
                 ),
-                // 'data' => $data["data"] ? $data["data"] : [],
                 'app_url' => $data['url'],
                 'contents' => $content,
                 'headings' => $heading,
@@ -59,7 +58,6 @@ class Onesignal{
                 "android_led_color" => "2464b3"
                 
             );
-            
             if(isset($data["data"])){
                 $fields["data"] = $data["data"];
             }
@@ -89,7 +87,6 @@ class Onesignal{
                 'app_id' => $this->APP_ID,
                 // 'included_segments' => array('All'),
                 'include_player_ids' => $users_id,
-                // 'data' => $data["data"] ? $data["data"] : [],
                 'app_url' => $data['url'],
                 'contents' => $content,
                 'headings' => $heading,
@@ -98,11 +95,45 @@ class Onesignal{
                 "android_accent_color" => "2464b3",
                 "android_led_color" => "2464b3"
             );
-
             if(isset($data["data"])){
                 $fields["data"] = $data["data"];
             }
+            $fields = json_encode($fields);
             
+            
+            $response = $this->Curl($this->HOST."/api/v1/notifications", $fields);
+        }else{
+            $response = json_encode(["Error" => "Please Insert `title`, `body` and `url`"]);
+        }
+        
+        return $response;
+    }
+
+    public function SendPushToUserByExternalIds($users_id = array(), $data = array()){
+        if (isset($data['title']) && isset($data['body']) && isset($data["url"])) {
+            $content      = array(
+                "en" => $data['body']
+            );
+            $heading = array(
+                "en" => $data['title']
+             );
+             
+    
+            $fields = array(
+                'app_id' => $this->APP_ID,
+                // 'included_segments' => array('All'),
+                'include_external_user_ids' => $users_id,
+                'app_url' => $data['url'],
+                'contents' => $content,
+                'headings' => $heading,
+                "small_icon" => "ic_stat_onesignal_default",
+                "big_picture" => isset($data['big_picture']) ? $data["big_picture"] : "",
+                "android_accent_color" => "2464b3",
+                "android_led_color" => "2464b3"
+            );
+            if(isset($data["data"])){
+                $fields["data"] = $data["data"];
+            }
             $fields = json_encode($fields);
             
             
